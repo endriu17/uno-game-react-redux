@@ -15,19 +15,22 @@ class Home extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.enterName = this.enterName.bind(this);
-    this.addPlayer = this.addPlayer.bind(this);
+    this.changePlayerName = this.changePlayerName.bind(this);
     this.setVisible = this.setVisible.bind(this);
     this.setHidden = this.setHidden.bind(this);
   }
 
   enterName(e) {
-    console.log('click', e.target.value)
+    console.log('click', e.target.value);
+    this.setState({
+      name: e.target.value
+    });
   }
 
-  addPlayer(e) {
+  changePlayerName(e) {
     e.preventDefault();
     console.log(this.state.name, e.target.id);
-    this.props.addPlayer(this.state.name, parseFloat(e.target.id));
+    this.props.changeName(this.state.name, parseFloat(e.target.id));
     this.setState({
       name: ""
     });
@@ -76,12 +79,12 @@ class Home extends Component {
     const players = this.props.players.map((player, i) => {
       return (
         <div key={i}>
-          <h2>Enter Player {player.id} name:</h2>
-          <form id={player.id} onSubmit={e => this.addPlayer(e)}>
+          <h4>Enter Player {player.id} name:</h4>
+          <form id={player.id} onSubmit={e => this.changePlayerName(e)}>
             <input
               type="text"
               onChange={e => this.enterName(e)}
-              value={player.name}
+              placeholder={player.name}
             />
             <button type="submit" id={player.id} onClick={this.setHidden}>
               Zatwierdź

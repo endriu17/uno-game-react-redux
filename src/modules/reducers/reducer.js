@@ -31,12 +31,12 @@ const reducer = function(state = initialState, action) {
         value: addValue(state.value, parseFloat(action.value))
       };
     case ADD_PLAYERS:
-      let prevState = {...state}
+      let prevState = { ...state };
       let players = [];
       for (var i = 0; i < action.value; i++) {
         prevState.id++;
-        let player = { id: prevState.id, name: 'Player ' + prevState.id }
-        players.push(player)
+        let player = { id: prevState.id, name: "Player " + prevState.id };
+        players.push(player);
       }
       return {
         ...prevState,
@@ -56,11 +56,15 @@ const reducer = function(state = initialState, action) {
         player
       };
     case CHANGE_NAME:
-      
-
+      let prevPlayers = { ...state };
       return {
-        ...state,
-        players: [...state.players, { id: action.id, name: action.name }]
+        ...prevPlayers,
+        players: prevPlayers.players.map(player => {
+          if (player.id === action.id) {
+            return { ...player, name: action.name };
+          }
+          return player;
+        })
       };
     default:
       return state;

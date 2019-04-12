@@ -34,10 +34,11 @@ export function removePlayer(id) {
   };
 }
 
-export function changeName(name) {
+export function changeName(name, id) {
   return {
     type: CHANGE_NAME,
-    name
+    name,
+    id
   };
 }
 

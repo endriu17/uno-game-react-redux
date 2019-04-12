@@ -1,0 +1,13 @@
+.homeSection {  
+        
+    &-booksContainer {
+        padding: 0 0 0 60px;
+        display: flex;
+        justify-content: space-between;    
+        flex-wrap: wrap;
+
+        @include media ('>phone','<oldDesktop') {
+                padding: 0 20px;   
+        }
+    }
+}

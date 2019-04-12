@@ -1,0 +1,13 @@
+.productBookAutor {
+    margin: 0;
+    padding: 0 20px;
+    display: block;
+    font: $productBookAutorFont;
+    color: $mainMenuColor;
+    text-decoration: none;
+    
+
+    &:hover, &:active {
+        color: $logoLinkHoverColor;
+    }
+}

@@ -1,0 +1,17 @@
+.pageLink {
+    padding: 0 0 0 15px;
+    font: $titleBookFont;
+    color: $mainMenuColor;
+    text-decoration: none;
+    &:hover, &:active {
+        color: $logoLinkColor;
+    }
+
+    @include media ('>phone','<oldDesktop') {
+        font-size: 22px;    
+    }
+
+    @include media ('<550px') {
+        font-size: 16px;
+    }
+}

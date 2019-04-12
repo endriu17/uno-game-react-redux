@@ -1,0 +1,14 @@
+.payButton {
+    padding: 10px 50px;    
+    font: $titleBookFont;
+    background-color: $logoLinkHoverColor;
+    border: none;
+    color: $tokenColor;
+    font-weight: bold;
+    letter-spacing: 3px;
+    max-width: 20%;
+
+    @include media ('>phone','<oldDesktop') {
+        align-self: center;    
+    }
+}

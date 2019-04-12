@@ -1,0 +1,9 @@
+.bookContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    @include media ('>phone','<oldDesktop') {
+        padding: 0 10px;   
+    }
+}

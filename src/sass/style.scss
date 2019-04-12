@@ -1,0 +1,29 @@
+@import "../../node_modules/include-media/dist/_include-media.scss";
+
+/* BASE SCOPE
+--------------------------------------------------------------------*/
+@import "normalize";
+
+/* UTILITIES SCOPE
+--------------------------------------------------------------------*/
+@import "utilities/variables";
+@import "utilities/mixins";
+
+/* LAYOUT SCOPE
+--------------------------------------------------------------------*/
+@import "layout/base";
+@import "layout/flexGrid";
+@import "layout/atoms";
+@import "layout/molecules";
+@import "layout/structures";
+
+
+// index
+// .index {
+//     background-color: $white;
+// }
+
+// styleguide
+// .styleguide {
+//     background-color: rgb(143, 143, 143);
+// }

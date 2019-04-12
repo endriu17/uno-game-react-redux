@@ -1,0 +1,57 @@
+.productSection {
+
+    &-coverContainer {
+        padding: 10px 20px 30px 20px;
+        width: 100%;
+    }
+
+    &-mainBookDataContainer {
+        padding: 0 20px;
+
+    }
+
+    &-physicalBookDataContainer, &-publisherBookDataContainer {
+        padding: 20px;
+
+        .labelData {
+            min-width: 30%;
+            max-width: 30%;
+
+            @include media ('>phone','<oldDesktop') {
+                min-width: 40%;   
+            }
+        }
+
+
+    }
+
+    &-publisherBookDataContainer {
+        
+        .labelData {
+            padding: 0;
+        }
+
+        @include media ('>phone','<oldDesktop') {
+            padding: 0 40px;   
+        }
+    }
+
+    &-priceDataContainer {
+        padding: 20px 0;
+        display: flex;
+        justify-content: space-between;
+
+        &-labelData {
+            padding: 0;
+        }
+
+        @include media ('>phone','<oldDesktop') {
+            padding: 20px;   
+        }
+    }
+
+    @include media ('>phone','<oldDesktop') {
+        padding: 20px;   
+    }
+
+}

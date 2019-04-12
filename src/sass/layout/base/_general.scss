@@ -1,0 +1,13 @@
+html {
+	box-sizing: border-box;
+}
+
+body {
+	overflow-x: hidden;
+}
+
+* {
+    position: relative;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+}

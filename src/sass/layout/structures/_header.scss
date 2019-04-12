@@ -1,0 +1,7 @@
+.header {
+    padding: 50px 0;
+
+    @include media ('>phone', '<desktop') {
+        padding: 40px 10px 120px 10px;    
+    }
+}

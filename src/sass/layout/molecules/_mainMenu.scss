@@ -1,0 +1,12 @@
+.mainMenu {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    list-style: none;
+    display: inline-flex;
+    justify-content: space-between;
+
+    @include media ('>phone','<oldDesktop') {
+        justify-content: space-around;    
+    }
+}

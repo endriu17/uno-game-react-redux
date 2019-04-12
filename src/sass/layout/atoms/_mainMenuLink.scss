@@ -1,0 +1,18 @@
+.mainMenuLink {
+    font: $mainMenuFont;
+    color: $mainMenuColor;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 5px;
+    &:hover, &:active, &.active {
+        color: $logoLinkHoverColor;
+    }
+
+    @include media ('>phone','<oldDesktop') {
+        font-size: 20px;    
+    }
+
+    @include media ('<550px') {
+        font-size: 16px;
+    }
+}

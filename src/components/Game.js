@@ -16,19 +16,10 @@ class Game extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.inputTest(this.state.value);
-    this.setState({
-      value: ""
-    });
-    this.checkThis(this.state.text);
   }
 
   handleChange(e) {
     console.log(e.target.value);
-    this.checkThis("wprowadzam liczbę graczy...");
-    this.setState({
-      value: e.target.value
-    });
   }
   checkThis = text => {
     return this.props.checkTest(text);
@@ -61,18 +52,18 @@ class Game extends Component {
                     <form
                       className="players-form_name"
                       id={player.id}
-                      onSubmit={e => this.changePlayerName(e)}
+                      onSubmit={e => this.handleSubmit(e)}
                     >
                       <input
                         style={{ display: "none" }}
                         className={"is" + player.id}
                         type="text"
-                        onChange={e => this.enterName(e)}
+                        onChange={e => this.handleChange(e)}
                         placeholder={player.name}
                         value={player.score}
                       />
                       <button type="submit" className={"bs" + player.id}>
-                        Wygrał
+                        Won
                       </button>
                     </form>
                   </td>

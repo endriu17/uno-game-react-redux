@@ -9,7 +9,7 @@ class Home extends Component {
     super(props);
     this.state = {
       value: "",
-      text: "Liczba graczy:"
+      text: "Number of players:"
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,7 +28,7 @@ class Home extends Component {
 
   handleChange(e) {
     console.log(e.target.value);
-    this.checkThis("wprowadzam liczbę graczy...");
+    this.checkThis("enter a players number...");
     this.setState({
       value: e.target.value
     });

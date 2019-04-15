@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Players from "./Players";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as testactions from "../modules/actions/actions-test";
@@ -7,8 +8,7 @@ class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: "",
-      text: "Wybrana liczba graczy:"
+      value: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -35,10 +35,59 @@ class Game extends Component {
   };
 
   render() {
+    const tableHead = this.props.players.map((player, i) => {
+      return (
+        <th key={i} className="players-table_map">
+          {player.name}
+        </th>
+      );
+    });
     return (
-      <section className="container">
-        <h1>Game container</h1>
-        <Link to="/gameover">The end</Link>
+      <section className="game-wrapper_main">
+        <Players />
+        <table>
+          <thead>
+            <tr>
+              <th>Round</th>
+              {tableHead}
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              {this.props.players.map((player, i) => {
+                return (
+                  <td key={i} className="players-table_map">
+                    <form
+                      className="players-form_name"
+                      id={player.id}
+                      onSubmit={e => this.changePlayerName(e)}
+                    >
+                      <input
+                        style={{ display: "none" }}
+                        className={"is" + player.id}
+                        type="text"
+                        onChange={e => this.enterName(e)}
+                        placeholder={player.name}
+                        value={player.score}
+                      />
+                      <button type="submit" className={"bs" + player.id}>
+                        Wygrał
+                      </button>
+                    </form>
+                  </td>
+                );
+              })}
+            </tr>
+          </tbody>
+        </table>
+        <Link
+          className="home-play_button"
+          to="/gameover"
+          style={{ display: this.props.value === 0 ? "none" : "flex" }}
+        >
+          The end
+        </Link>
       </section>
     );
   }
@@ -47,8 +96,7 @@ class Game extends Component {
 const mapStateToProps = function(state) {
   console.log(state);
   return {
-    text: state.reducertest.text,
-    value: state.reducertest.value
+    players: state.reducertest.players
   };
 };
 

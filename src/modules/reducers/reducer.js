@@ -4,14 +4,16 @@ import {
   ADD_PLAYER,
   ADD_PLAYERS,
   REMOVE_PLAYER,
-  CHANGE_NAME
+  CHANGE_NAME,
+  CHANGE_BUTTON_TEXT
 } from "../actions/actions-test";
 
 const initialState = {
-  text: "Wprowadź liczbę graczy!",
+  text: "Enter a players number!",
   value: 0,
   players: [],
-  id: 0
+  id: 0,
+  button: "Change name"
 };
 
 function addValue(prev, newValue) {
@@ -35,7 +37,12 @@ const reducer = function(state = initialState, action) {
       let players = [];
       for (var i = 0; i < action.value; i++) {
         prevState.id++;
-        let player = { id: prevState.id, name: "Player " + prevState.id };
+        let player = {
+          id: prevState.id,
+          name: "Player " + prevState.id,
+          score: 0,
+          button: 'Change name'
+        };
         players.push(player);
       }
       return {
@@ -66,6 +73,17 @@ const reducer = function(state = initialState, action) {
           return player;
         })
       };
+    case CHANGE_BUTTON_TEXT:
+    let prevButtons = { ...state };
+    return {
+      ...prevButtons,
+      players: prevButtons.players.map(player => {
+        if (player.id === action.id) {
+          return { ...player, button: action.value };
+        }
+        return player;
+      })
+    };
     default:
       return state;
   }

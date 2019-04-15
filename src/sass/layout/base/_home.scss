@@ -1,0 +1,68 @@
+.home-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .home-info_text {
+    display: flex;
+    font-size: 1.6rem;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    h3,p {
+      margin: 0;
+      padding: 0;
+    }
+    p {
+      margin-left: 50px;
+    }
+  }
+
+  p.home-players_value {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .home-value_form {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 25%;
+    form.home-players_number {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+      input {
+        width: 100px;
+        padding: 10px;
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+    }
+    button.button-submit {
+      border: none;
+      background-color: #a7e0fc;
+      padding: 10px 15px;
+      color: #fff;
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+  }
+
+  .home-play_button {
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #a7e0fc;
+    color: #fff;
+    font-size: 1.3rem;
+  }
+}

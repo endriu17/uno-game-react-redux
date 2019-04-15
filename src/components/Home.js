@@ -2,39 +2,18 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as testactions from "../modules/actions/actions-test";
+import PlayersTable from "./PlayersTable";
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
       value: "",
-      text: "Wybrana liczba graczy:",
-      players: [],
-      name: "",
+      text: "Liczba graczy:"
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.enterName = this.enterName.bind(this);
-    this.changePlayerName = this.changePlayerName.bind(this);
     this.setVisible = this.setVisible.bind(this);
-    this.setHidden = this.setHidden.bind(this);
-  }
-
-  enterName(e) {
-    console.log('click', e.target.value);
-    this.setState({
-      name: e.target.value
-    });
-  }
-
-  changePlayerName(e) {
-    e.preventDefault();
-    console.log(this.state.name, e.target.id);
-    this.props.changeName(this.state.name, parseFloat(e.target.id));
-    this.setState({
-      name: ""
-    });
-    e.target.reset();
   }
 
   handleSubmit(e) {
@@ -54,6 +33,7 @@ class Home extends Component {
       value: e.target.value
     });
   }
+
   checkThis = text => {
     return this.props.checkTest(text);
   };
@@ -67,53 +47,45 @@ class Home extends Component {
     this.props.inputTest(this.state.value - 1);
   }
 
-  setHidden() {
-    console.log("click hidde");
-    this.setState({
-      id: 0
-    });
-  }
-
   render() {
-    console.log(this.state);
-    const players = this.props.players.map((player, i) => {
-      return (
-        <div key={i}>
-          <h4>Enter Player {player.id} name:</h4>
-          <form id={player.id} onSubmit={e => this.changePlayerName(e)}>
-            <input
-              type="text"
-              onChange={e => this.enterName(e)}
-              placeholder={player.name}
-            />
-            <button type="submit" id={player.id} onClick={this.setHidden}>
-              Zatwierdź
-            </button>
-          </form>
-        </div>
-      );
-    });
-
     return (
-      <section className="container">
-        <h3>{this.props.text}</h3>
-        <div style={{ display: this.props.value > 0 ? "none" : "block" }}>
-          <form onSubmit={e => this.handleSubmit(e)}>
+      <section className="home-wrapper">
+        <h1>Uno Game Counter</h1>
+        <div className="home-info_text">
+          <h3 className="home-info_header">{this.props.text}</h3>
+          <p
+            className="home-players_value"
+            style={{ display: this.props.value === 0 ? "none" : "flex" }}
+          >
+            {this.props.value}
+          </p>
+        </div>
+
+        <div
+          className="home-value_form"
+          style={{ display: this.props.value > 0 ? "none" : "flex" }}
+        >
+          <form
+            className="home-players_number"
+            onSubmit={e => this.handleSubmit(e)}
+          >
             <input
               type="text"
               onChange={e => this.handleChange(e)}
               value={this.state.value}
             />
-            <button type="submit">Submit</button>
+            <button className="button-submit" type="submit">
+              Submit
+            </button>
           </form>
         </div>
-        <p style={{ display: this.props.value === 0 ? "none" : "block" }}>
-          {this.props.value}
-        </p>
-        {players}
+        <PlayersTable
+          style={{ display: this.props.value === 0 ? "none" : "flex" }}
+        />
         <Link
+          className="home-play_button"
           to="/game"
-          style={{ display: this.props.value === 0 ? "none" : "block" }}
+          style={{ display: this.props.value === 0 ? "none" : "flex" }}
         >
           Play the game
         </Link>

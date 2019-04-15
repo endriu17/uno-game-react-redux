@@ -4,6 +4,7 @@ export const ADD_PLAYER = "ADD_PLAYER";
 export const ADD_PLAYERS = "ADD_PLAYERS";
 export const REMOVE_PLAYER = "REMOVE_PLAYER";
 export const CHANGE_NAME = "CHANGE_NAME";
+export const CHANGE_BUTTON_TEXT = "CHANGE_BUTTON_TEXT";
 
 export function checkTest(text) {
   return {
@@ -19,11 +20,12 @@ export function inputTest(value) {
   };
 }
 
-export function addPlayer(name, id) {
+export function addPlayer(name, id, score) {
   return {
     type: ADD_PLAYER,
     name,
-    id
+    id,
+    score
   };
 }
 
@@ -46,5 +48,13 @@ export function addPlayers(value) {
   return {
     type: ADD_PLAYERS,
     value
+  };
+}
+
+export function changeButtonText(value, id) {
+  return {
+    type: CHANGE_BUTTON_TEXT,
+    value,
+    id
   };
 }

@@ -2,4 +2,4 @@
 
 ## Status:
 
-...in development (20%)
+...in development (40%)

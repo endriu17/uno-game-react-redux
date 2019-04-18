@@ -5,8 +5,9 @@ import {
   ADD_PLAYERS,
   REMOVE_PLAYER,
   CHANGE_NAME,
+  CHANGE_SCORE,
   CHANGE_BUTTON_TEXT
-} from "../actions/actions-test";
+} from "../actions/actions-home";
 
 const initialState = {
   text: "Enter a players number!",
@@ -18,12 +19,15 @@ const initialState = {
 
 function addValue(prev, newValue) {
   let sum = prev + newValue;
-  console.log(sum);
   return sum;
 }
 
+function changeScore(prev, newValue) {
+  let score = prev + newValue;
+  return score;
+}
+
 const reducer = function(state = initialState, action) {
-  console.log("test reducer", action);
   switch (action.type) {
     case TEXT_ACTION:
       return { ...state, text: action.text };
@@ -41,7 +45,7 @@ const reducer = function(state = initialState, action) {
           id: prevState.id,
           name: "Player " + prevState.id,
           score: 0,
-          button: 'Change name'
+          button: "Change name"
         };
         players.push(player);
       }
@@ -74,16 +78,27 @@ const reducer = function(state = initialState, action) {
         })
       };
     case CHANGE_BUTTON_TEXT:
-    let prevButtons = { ...state };
-    return {
-      ...prevButtons,
-      players: prevButtons.players.map(player => {
-        if (player.id === action.id) {
-          return { ...player, button: action.value };
-        }
-        return player;
-      })
-    };
+      let prevButtons = { ...state };
+      return {
+        ...prevButtons,
+        players: prevButtons.players.map(player => {
+          if (player.id === action.id) {
+            return { ...player, button: action.text };
+          }
+          return player;
+        })
+      };
+      case CHANGE_SCORE:
+        let prevScore = { ...state };
+        return {
+          ...prevScore,
+          players: prevScore.players.map(player => {
+            if (player.id === action.id) {
+              return { ...player, score: changeScore(player.score, action.score) };
+            }
+            return player;
+          })
+        };
     default:
       return state;
   }

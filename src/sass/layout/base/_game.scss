@@ -1,0 +1,27 @@
+.game-wrapper_main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  .game-round_input {
+    border: 2px solid red;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px 10px;
+    width: 50px;
+  }
+  .game-won_button {
+    padding: 10px;
+    background-color: #2db1ad;
+    color: #fff;
+    border: none;
+  }
+  .winner {
+    padding: 10px;
+    background-color: #dd3012;
+    color: #fff;
+    border: none;
+    font-weight: bold;
+  }
+}

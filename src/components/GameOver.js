@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import * as testactions from "../modules/actions/actions-test";
+import * as homeactions from "../modules/actions/actions-home";
 
 class GameOver extends Component {
   constructor(props) {
     super(props);
     this.state = {
       value: "",
-      text: "Wybrana liczba graczy:"
+      text: "Number of players:"
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -47,13 +47,13 @@ class GameOver extends Component {
 const mapStateToProps = function(state) {
   console.log(state);
   return {
-    text: state.reducertest.text,
-    value: state.reducertest.value
+    text: state.homereducer.text,
+    value: state.homereducer.value
   };
 };
 
 const mapDispatchToProps = {
-  ...testactions
+  ...homeactions
 };
 
 export default connect(

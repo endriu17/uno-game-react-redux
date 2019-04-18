@@ -4,12 +4,14 @@
 import { combineReducers } from 'redux';
 
 // Import Reducers
-import reducertest from './modules/reducers/reducer';
+import homereducer from './modules/reducers/reducer';
+import gamereducer from './modules/reducers/gamereducer';
 
 
 // Combine all reducers into one root reducer
 const reducer = combineReducers({
-     reducertest
+     homereducer,
+     gamereducer
 });
 
 export default reducer;

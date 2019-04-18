@@ -1,0 +1,27 @@
+.game-wrapper_players {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  .players-table_map {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid #410cdd;
+    padding: 20px;
+    min-width: 10%;
+    margin: 20px;
+    .players-map_player {
+      display: flex;
+      width: 100%;
+      justify-content: space-around;
+      align-items: center;
+    }
+    .players-map_score {
+      font-size: 2rem;
+      margin: 0;
+    }
+  }
+}

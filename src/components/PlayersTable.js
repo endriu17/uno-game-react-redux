@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as testactions from "../modules/actions/actions-test";
+import * as homeactions from "../modules/actions/actions-home";
 
 class PlayersTable extends Component {
   constructor(props) {
@@ -25,6 +25,7 @@ class PlayersTable extends Component {
     const buttonChangetext = document.querySelector(
       ".bs" + parseFloat(e.target.id)
     );
+
     if (hiddenInput.style.display === "none") {
       hiddenInput.style.display = "flex";
       this.props.changeButtonText('Save', parseFloat(e.target.id))
@@ -74,12 +75,12 @@ class PlayersTable extends Component {
 
 const mapStateToProps = function(state) {
   return {
-    players: state.reducertest.players
+    players: state.homereducer.players
   };
 };
 
 const mapDispatchToProps = {
-  ...testactions
+  ...homeactions
 };
 
 export default connect(

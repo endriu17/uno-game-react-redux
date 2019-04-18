@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import { MainLayout } from './modules/MainLayout/MainLayout';
-// import Home from './modules/Home/HomeContainer';
 import Home from './components/Home'
 import Game from './components/Game'
 import GameOver from './components/GameOver'

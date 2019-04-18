@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import * as testactions from "../modules/actions/actions-test";
+import * as homeactions from "../modules/actions/actions-home";
 import PlayersTable from "./PlayersTable";
 
 class Home extends Component {
@@ -13,7 +13,6 @@ class Home extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.setVisible = this.setVisible.bind(this);
   }
 
   handleSubmit(e) {
@@ -23,7 +22,7 @@ class Home extends Component {
       value: ""
     });
     this.checkThis(this.state.text);
-    this.props.addPlayers(this.state.value);
+    this.props.addPlayers(parseFloat(this.state.value));
   }
 
   handleChange(e) {
@@ -37,15 +36,6 @@ class Home extends Component {
   checkThis = text => {
     return this.props.checkTest(text);
   };
-
-  setVisible(e) {
-    console.log("click", e.target.id);
-    this.setState({
-      id: parseFloat(e.target.id)
-    });
-    this.props.removePlayer(parseFloat(e.target.id));
-    this.props.inputTest(this.state.value - 1);
-  }
 
   render() {
     return (
@@ -97,14 +87,14 @@ class Home extends Component {
 const mapStateToProps = function(state) {
   console.log(state);
   return {
-    text: state.reducertest.text,
-    value: state.reducertest.value,
-    players: state.reducertest.players
+    text: state.homereducer.text,
+    value: state.homereducer.value,
+    players: state.homereducer.players
   };
 };
 
 const mapDispatchToProps = {
-  ...testactions
+  ...homeactions
 };
 
 export default connect(

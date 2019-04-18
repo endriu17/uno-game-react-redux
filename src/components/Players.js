@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as testactions from "../modules/actions/actions-test";
+import * as homeactions from "../modules/actions/actions-home";
 
 class Players extends Component {
   constructor(props) {
@@ -13,9 +13,10 @@ class Players extends Component {
         {this.props.players.map((player, i) => {
           return (
             <div className="players-table_map" key={i}>
-              <h3>{player.id}.</h3>
-              <h3>{player.name}</h3>
-              <h3>{player.score}</h3>
+              <div className='players-map_player'>
+                <h3>{player.name}</h3>
+              </div>
+              <h3 className='players-map_score'>{player.score}</h3>
             </div>
           );
         })}
@@ -26,12 +27,12 @@ class Players extends Component {
 
 const mapStateToProps = function(state) {
   return {
-    players: state.reducertest.players
+    players: state.homereducer.players
   };
 };
 
 const mapDispatchToProps = {
-  ...testactions
+  ...homeactions
 };
 
 export default connect(

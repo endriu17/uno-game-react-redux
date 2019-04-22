@@ -4,7 +4,6 @@ import * as homeactions from "../modules/actions/actions-home";
 import * as gameactions from "../modules/actions/actions-game";
 
 const RoundLog = props => {
-  console.log(props.log.length);
   return (
     <section className="game-log_wrapper">
       <h3>Round log</h3>

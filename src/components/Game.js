@@ -16,7 +16,8 @@ class Game extends Component {
       total: 0,
       round: 1,
       winner: "",
-      playersCount: 0
+      playersCount: 0,
+      classActive: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -66,7 +67,7 @@ class Game extends Component {
       formShow[i].style.display = "flex";
     }
 
-    buttonShow.classList.toggle("winner");
+   
     this.setState({
       buttonWinner: "Winner!",
       winner:
@@ -74,9 +75,10 @@ class Game extends Component {
         this.state.round +
         " round is " +
         this.props.players[id - 1].name,
-      playersCount: +1
+      playersCount: +1,
+      classActive: testButton
     });
-    buttonShow.disabled = true;
+    // buttonShow.disabled = true;
     formShow[id - 1].style.display = "none";
     this.props.saveID(id);
   }
@@ -84,16 +86,28 @@ class Game extends Component {
   resetRound(){
     this.props.gameLog(this.props.players[parseFloat(this.props.id) - 1].name,
     this.props.players[parseFloat(this.props.id) - 1].score)
+    let buttonScore = document.querySelectorAll(".game-won_button");
+    let formShow = document.querySelectorAll(".game-log_name");
+    let buttonShow = document.querySelector(`#${this.state.classActive}`);
+    buttonShow.classList.remove("winner");
+    buttonShow.classList.toggle("game-won_button");
+    buttonShow.style.display = 'flex';
+    for (var i = 0; i < buttonScore.length; i++) {
+      buttonScore[i].style.display = "flex";
+      formShow[i].style.display = "none";
+    }
     this.setState({
       buttonWinner: "Won",
       round: +1,
       winner: "",
       score: 0,
+      classActive: ''
     })
   }
 
   render() {
     let showHeader = this.state.winner;
+    console.log(this.state.classActive)
     const tableHead = this.props.players.map((player, i) => {
       return (
         <p

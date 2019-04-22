@@ -1,7 +1,8 @@
 export const SAVE_ID = "SAVE_ID";
 export const SAVE_SCORE = "SAVE_SCORE";
-export const GAME_LOG = "GAME_LOG";
+export const GAME_WINNER = "GAME_WINNER";
 export const ROUND_LOG = "ROUND_LOG";
+export const GAME_LOG = "GAME_LOG";
 
 
 export function saveID(id) {
@@ -18,22 +19,25 @@ export function saveScore(score) {
   };
 }
 
-export function gameLog(round, name, score, result) {
+export function gameWinner(name) {
   return {
-    type: GAME_LOG,
-    round,
+    type: GAME_WINNER,
     name,
-    score,
-    result
   };
 }
 
-export function roundLog(round, name, score, result){
+export function roundLog(name, score){
   return {
     type: ROUND_LOG,
-    round,
     name,
     score,
-    result
   };
+}
+
+export function gameLog(winnerName, winnerScore){
+  return {
+    type: GAME_LOG,
+    winnerName,
+    winnerScore
+  }
 }

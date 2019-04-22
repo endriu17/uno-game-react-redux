@@ -7,25 +7,40 @@
   padding: 20px;
 
   .players-table_map {
-    width: 50%;
+    // width: 50%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 1.5rem;
     margin: 20px 0;
-    h3 {
-      padding: 0;
-      margin: 5px 20px;
+
+    .game-won_button {
+      padding: 10px;
+      background-color: #2db1ad;
+      color: #fff;
+      border: none;
+    }
+    .winner {
+      padding: 10px;
+      background-color: #dd3012;
+      color: #fff;
+      border: none;
+      font-weight: bold;
     }
 
     .players-form_name {
       display: flex;
+      flex-direction: column;
       justify-content: space-around;
       width: 50%;
-      input {
+      .game-round_input {
+        border: 2px solid red;
         text-align: center;
+        border-radius: 5px;
+        padding: 5px 10px;
+        width: 50px;
       }
-      button{
+      button {
         border: none;
         padding: 10px 20px;
         background-color: #2283dd;

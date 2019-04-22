@@ -4,24 +4,16 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  .game-round_input {
-    border: 2px solid red;
-    text-align: center;
-    border-radius: 5px;
-    padding: 5px 10px;
-    width: 50px;
+  .game-log_header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
   }
-  .game-won_button {
-    padding: 10px;
-    background-color: #2db1ad;
-    color: #fff;
-    border: none;
+
+  .game-log_map {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
   }
-  .winner {
-    padding: 10px;
-    background-color: #dd3012;
-    color: #fff;
-    border: none;
-    font-weight: bold;
-  }
+  
 }

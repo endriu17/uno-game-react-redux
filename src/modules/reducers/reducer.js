@@ -88,6 +88,7 @@ const reducer = function(state = initialState, action) {
           return player;
         })
       };
+      
       case CHANGE_SCORE:
         let prevScore = { ...state };
         return {

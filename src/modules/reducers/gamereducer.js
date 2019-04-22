@@ -1,17 +1,18 @@
 import {
   SAVE_ID,
   SAVE_SCORE,
-  GAME_LOG,
-  ROUND_LOG
+  GAME_WINNER,
+  ROUND_LOG,
+  GAME_LOG
 } from "../actions/actions-game";
 
 const initialState = {
-  log: [],
+  winner: "",
   id: "",
   score: 0,
-  total: 0,
   roundCount: 1,
-  round: []
+  round: [],
+  log: []
 };
 
 function addValue(prev, newValue) {
@@ -33,6 +34,7 @@ const gamereducer = function(state = initialState, action) {
       let currentRound = { ...state };
       return {
         ...currentRound,
+        score: currentRound.score + -action.score,
         round: [
           ...currentRound.round,
           {
@@ -40,15 +42,32 @@ const gamereducer = function(state = initialState, action) {
             name: action.name,
             score: action.score
           }
-        ],
-        log: [...currentRound.log, currentRound.round]
+        ]
       };
-    case GAME_LOG:
-      let game = { ...state };
-      console.log(game.round);
+    case GAME_WINNER:
+      let prevScore = { ...state };
+
       return {
-        ...game,
-        log: [...game.log, game.round]
+        ...prevScore,
+        winner: action.name
+      };
+
+    case GAME_LOG:
+      let newRound = { ...state };
+      return {
+        ...newRound,
+        log: [
+          ...newRound.round,
+          {
+            round: newRound.roundCount,
+            name: action.winnerName,
+            score: action.winnerScore
+          }
+        ],
+        score: 0,
+        round: [],
+        id: "",
+        roundCount: newRound.roundCount +1
       };
 
     default:

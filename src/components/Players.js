@@ -1,29 +1,23 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import * as homeactions from "../modules/actions/actions-home";
 
-class Players extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <section className="game-wrapper_players">
-        {this.props.players.map((player, i) => {
-          return (
-            <div className="players-table_map" key={i}>
-              <div className='players-map_player'>
-                <h3>{player.name}</h3>
-              </div>
-              <h3 className='players-map_score'>{player.score}</h3>
+const Players = props => {
+  return (
+    <section className="game-wrapper_players">
+      {props.players.map((player, i) => {
+        return (
+          <div className="players-counter_map" key={i}>
+            <div className="players-counter_player">
+              <h3>{player.name}</h3>
             </div>
-          );
-        })}
-      </section>
-    );
-  }
-}
+            <h3 className="players-map_score">{player.score}</h3>
+          </div>
+        );
+      })}
+    </section>
+  );
+};
 
 const mapStateToProps = function(state) {
   return {

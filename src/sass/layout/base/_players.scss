@@ -4,24 +4,20 @@
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
-  .players-table_map {
+  .players-counter_map {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    flex-direction:column;
+    justify-content: center;
     align-items: center;
-    border: 1px solid #410cdd;
-    padding: 20px;
-    min-width: 10%;
+    min-width: 100px;
     margin: 20px;
-    .players-map_player {
-      display: flex;
-      width: 100%;
-      justify-content: space-around;
-      align-items: center;
+
+    h3 {
+      margin: auto auto 0;
     }
+
     .players-map_score {
-      font-size: 2rem;
-      margin: 0;
+      margin-top: 20px;
     }
   }
 }

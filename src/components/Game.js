@@ -12,7 +12,7 @@ class Game extends Component {
     super(props);
     this.state = {
       buttonWinner: "Won",
-      score: 0,
+      score: "",
       total: 0,
       round: 1,
       winner: "",
@@ -44,17 +44,17 @@ class Game extends Component {
       -this.state.score
     );
     this.setState({
-      score: 0
+      score: ""
     });
     e.target.reset();
   }
 
   handleChange(e) {
-    this.setState({
-      score: parseFloat(e.target.value)
-    });
+    const re = /^[0-9\b]+$/;
+    if (e.target.value === "" || re.test(e.target.value)) {
+      this.setState({ score: parseFloat(e.target.value) });
+    }
   }
-
   showInput(e, id) {
     let formShow = document.querySelectorAll(".game-log_name");
     let buttonScore = document.querySelectorAll(".game-won_button");
@@ -69,11 +69,7 @@ class Game extends Component {
 
     this.setState({
       buttonWinner: "Winner!",
-      winner:
-        "Winner of " +
-        this.state.round +
-        " round is " +
-        this.props.players[id - 1].name,
+      winner: this.props.players[id - 1].name,
       classActive: testButton,
       showButton: formShow.length === 1 ? true : false,
       playersCount: this.state.playersCount + 1
@@ -81,7 +77,7 @@ class Game extends Component {
     formShow[id - 1].style.display = "none";
     this.props.saveID(id);
   }
-  clearAll(){
+  clearAll() {
     for (var i = 0; i < this.props.players.length; i++) {
       if (this.props.players[i].score >= 500) {
         let gameWinner = this.props.players[i];
@@ -94,7 +90,6 @@ class Game extends Component {
   }
 
   resetRound() {
-    
     this.props.gameLog(
       this.props.players[parseFloat(this.props.id) - 1].name,
       this.props.players[parseFloat(this.props.id) - 1].score
@@ -113,7 +108,7 @@ class Game extends Component {
       buttonWinner: "Won",
       round: +1,
       winner: "",
-      score: 0,
+      score: "",
       classActive: "",
       playersCount: 0
     });
@@ -147,49 +142,55 @@ class Game extends Component {
           className="round-winner"
           style={{ display: this.state.winner ? "flex" : "none" }}
         >
-          {this.state.winner}
+          Winner of round {this.props.roundCount} is {this.state.winner}!
         </h2>
-        <div style={{ display: this.state.winner ? "none" : "block" }}>
-          <div className="game-log_header">{tableHead}</div>
+        <div
+          style={{ display: this.state.winner ? "none" : "flex" }}
+          className="game-log_header"
+        >
+          {tableHead}
         </div>
         <div className="game-log_map">
-          {this.props.players.map((player, i) => {
-            return (
-              <div key={i}>
-                <form
-                  style={{ display: "none" }}
-                  className="game-log_name"
-                  id={player.id}
-                  onSubmit={e => this.handleSubmit(e)}
-                >
-                  <label>
-                    Enter {player.name} score:
-                    <input
-                      className={`${"is" + player.id} ${"game-round_input"}`}
-                      type="text"
-                      onChange={e => this.handleChange(e)}
-                      placeholder={player.score}
-                    />
-                  </label>
-                  <button
-                    type="submit"
-                    className={"bs" + player.id}
-                    onClick={this.isSubmit}
-                  >
-                    Enter
-                  </button>
-                </form>
-                <input
-                  type="button"
-                  className="game-won_button"
-                  id={`${"bb" + player.id}`}
-                  onClick={(e, id) => this.showInput(e, player.id)}
-                  value={this.state.buttonWinner}
-                />
-              </div>
-            );
-          })}
+        {this.props.players.map((player, i) => {
+          return (
+            <div>
+              <input
+                type="button"
+                className="game-won_button"
+                id={`${"bb" + player.id}`}
+                onClick={(e, id) => this.showInput(e, player.id)}
+                value={this.state.buttonWinner}
+              />
+            </div>
+          );
+        })}
         </div>
+        {this.props.players.map((player, i) => {
+          return (
+            <div className="game-wrapper_input" key={i}>
+              <form
+                style={{ display: "none" }}
+                className="game-log_name"
+                id={player.id}
+                onSubmit={e => this.handleSubmit(e)}
+              >
+                <label className="game-log_label">
+                  Enter {player.name} score:
+                </label>
+                <input
+                  className={`${"is" + player.id} ${"game-round_input"}`}
+                  type="text"
+                  onChange={this.handleChange}
+                  value={this.state.score}
+                />
+                <button type="submit" className={"bs" + player.id}>
+                  Enter
+                </button>
+              </form>
+            </div>
+          );
+        })}
+
         {showButton}
         <RoundLog
           log={this.props.log}

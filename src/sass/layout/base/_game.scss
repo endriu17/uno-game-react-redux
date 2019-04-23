@@ -4,16 +4,60 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  position: relative;
   .game-log_header {
     display: flex;
+    flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    min-width: 20%;
   }
-
   .game-log_map {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    min-width: 20%;
+
+    .game-won_button {
+      border: none;
+      padding: 5px 10px;
+      background-color: #ff5227;
+      color: #fff;
+      font-weight: bold;
+    }
   }
-  
+  .game-wrapper_input {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 20px 10px;
+    .game-log_name {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      min-width: 30%;
+
+      .game-round_input {
+        text-align: center;
+        margin-left: 10px;
+        padding: 5px;
+        &:focus {
+          transform: scale(5);
+          z-index: 1;
+          position: absolute;
+          top: 30%;
+        }
+      }
+      button[class^="bs"] {
+        border: none;
+        padding: 5px;
+        background-color: #367bfb;
+        color: #fff;
+        margin-left: 10px;
+      }
+    }
+  }
 }

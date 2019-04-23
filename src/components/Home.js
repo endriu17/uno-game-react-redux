@@ -17,12 +17,19 @@ class Home extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.inputTest(this.state.value);
-    this.setState({
-      value: ""
-    });
-    this.checkThis(this.state.text);
-    this.props.addPlayers(parseFloat(this.state.value));
+    if (this.state.value <= 9 && this.state.value >= 2) {
+      this.props.inputTest(this.state.value);
+      this.setState({
+        value: ""
+      });
+      this.checkThis(this.state.text);
+      this.props.addPlayers(parseFloat(this.state.value));
+    } else {
+      this.checkThis("Value must be from 2 to 9");
+      this.setState({
+        value: ""
+      });
+    }
   }
 
   handleChange(e) {

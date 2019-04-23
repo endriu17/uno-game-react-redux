@@ -10,7 +10,6 @@ const GameLog = props => {
         {props.win.map((game, i) => {
           return (
             <div key={i}>
-              <p>
                 {game.map((a, j) => {
                   return (
                     <div key={j}>
@@ -20,7 +19,6 @@ const GameLog = props => {
                     </div>
                   );
                 })}
-              </p>
             </div>
           );
         })}

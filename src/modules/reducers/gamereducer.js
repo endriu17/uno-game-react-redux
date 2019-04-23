@@ -38,7 +38,6 @@ const gamereducer = function(state = initialState, action) {
         round: [
           ...currentRound.round,
           {
-            round: currentRound.roundCount,
             name: action.name,
             score: action.score
           }
@@ -58,16 +57,19 @@ const gamereducer = function(state = initialState, action) {
         ...newRound,
         log: [
           ...newRound.log,
-          [...newRound.round,
-            {round: newRound.roundCount,
-            name: action.winnerName,
-            score: action.winnerScore
-          }]
+          [
+            {
+              round: newRound.roundCount,
+              name: action.winnerName,
+              score: newRound.score
+            },
+            ...newRound.round
+          ]
         ],
         score: 0,
         round: [],
         id: "",
-        roundCount: newRound.roundCount +1
+        roundCount: newRound.roundCount + 1
       };
 
     default:

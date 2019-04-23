@@ -17,27 +17,28 @@ class Game extends Component {
       round: 1,
       winner: "",
       playersCount: 0,
-      classActive: ''
+      classActive: "",
+      showButton: false
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.showInput = this.showInput.bind(this);
     this.resetRound = this.resetRound.bind(this);
+    this.clearAll = this.clearAll.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state.playersCount);
     let formHide = document.querySelectorAll(".game-log_name");
     formHide[parseFloat(e.target.id) - 1].style.display = "none";
     this.setState({
       total: this.state.score,
-      playersCount: +1
+      playersCount: this.state.playersCount + 1
     });
 
     this.props.changeScore(this.state.score, this.props.id);
-   
+
     this.props.roundLog(
       this.props.players[parseFloat(e.target.id) - 1].name,
       -this.state.score
@@ -49,7 +50,6 @@ class Game extends Component {
   }
 
   handleChange(e) {
-    console.log(e.target.value);
     this.setState({
       score: parseFloat(e.target.value)
     });
@@ -67,7 +67,6 @@ class Game extends Component {
       formShow[i].style.display = "flex";
     }
 
-   
     this.setState({
       buttonWinner: "Winner!",
       winner:
@@ -75,39 +74,61 @@ class Game extends Component {
         this.state.round +
         " round is " +
         this.props.players[id - 1].name,
-      playersCount: +1,
-      classActive: testButton
+      classActive: testButton,
+      showButton: formShow.length === 1 ? true : false,
+      playersCount: this.state.playersCount + 1
     });
-    // buttonShow.disabled = true;
     formShow[id - 1].style.display = "none";
     this.props.saveID(id);
   }
+  clearAll(){
+    for (var i = 0; i < this.props.players.length; i++) {
+      if (this.props.players[i].score >= 500) {
+        let gameWinner = this.props.players[i];
+        this.props.gameWinner(gameWinner.name);
+        this.props.history.push("/gameover");
+      } else {
+        this.resetRound();
+      }
+    }
+  }
 
-  resetRound(){
-    this.props.gameLog(this.props.players[parseFloat(this.props.id) - 1].name,
-    this.props.players[parseFloat(this.props.id) - 1].score)
+  resetRound() {
+    
+    this.props.gameLog(
+      this.props.players[parseFloat(this.props.id) - 1].name,
+      this.props.players[parseFloat(this.props.id) - 1].score
+    );
     let buttonScore = document.querySelectorAll(".game-won_button");
     let formShow = document.querySelectorAll(".game-log_name");
     let buttonShow = document.querySelector(`#${this.state.classActive}`);
     buttonShow.classList.remove("winner");
     buttonShow.classList.toggle("game-won_button");
-    buttonShow.style.display = 'flex';
-    for (var i = 0; i < buttonScore.length; i++) {
-      buttonScore[i].style.display = "flex";
-      formShow[i].style.display = "none";
+    buttonShow.style.display = "flex";
+    for (var j = 0; j < buttonScore.length; j++) {
+      buttonScore[j].style.display = "flex";
+      formShow[j].style.display = "none";
     }
     this.setState({
       buttonWinner: "Won",
       round: +1,
       winner: "",
       score: 0,
-      classActive: ''
-    })
+      classActive: "",
+      playersCount: 0
+    });
   }
 
   render() {
     let showHeader = this.state.winner;
-    console.log(this.state.classActive)
+    let formShow = document.querySelectorAll(".game-log_name");
+    const showButton =
+      formShow.length === this.state.playersCount &&
+      this.state.playersCount > 0 ? (
+        <button onClick={this.clearAll}>New round</button>
+      ) : (
+        ""
+      );
     const tableHead = this.props.players.map((player, i) => {
       return (
         <p
@@ -121,6 +142,7 @@ class Game extends Component {
     return (
       <section className="game-wrapper_main">
         <Players players={this.props.players} />
+        <h2>{`Runda ${this.props.roundCount}`}</h2>
         <h2
           className="round-winner"
           style={{ display: this.state.winner ? "flex" : "none" }}
@@ -128,7 +150,6 @@ class Game extends Component {
           {this.state.winner}
         </h2>
         <div style={{ display: this.state.winner ? "none" : "block" }}>
-          <h2>Round 1</h2>
           <div className="game-log_header">{tableHead}</div>
         </div>
         <div className="game-log_map">
@@ -169,13 +190,18 @@ class Game extends Component {
             );
           })}
         </div>
-        <button onClick={this.resetRound}>New round</button>
-        <RoundLog log={this.props.log} players={this.props.players} winID={this.props.id}/>
+        {showButton}
+        <RoundLog
+          log={this.props.log}
+          players={this.props.players}
+          winID={this.props.id}
+        />
         <GameLog log={this.props.log} />
         <Link
           className="home-play_button"
           to="/gameover"
           style={{ display: this.props.value === 0 ? "none" : "flex" }}
+          reset={this.clearAll}
         >
           The end
         </Link>
@@ -190,7 +216,8 @@ const mapStateToProps = function(state) {
     players: state.homereducer.players,
     log: state.gamereducer.log,
     id: state.gamereducer.id,
-    round: state.gamereducer.round
+    round: state.gamereducer.round,
+    roundCount: state.gamereducer.roundCount
   };
 };
 

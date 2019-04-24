@@ -6,7 +6,8 @@ import {
   REMOVE_PLAYER,
   CHANGE_NAME,
   CHANGE_SCORE,
-  CHANGE_BUTTON_TEXT
+  CHANGE_BUTTON_TEXT,
+  HOME_RESET
 } from "../actions/actions-home";
 
 const initialState = {
@@ -88,18 +89,30 @@ const reducer = function(state = initialState, action) {
           return player;
         })
       };
-      
-      case CHANGE_SCORE:
-        let prevScore = { ...state };
-        return {
-          ...prevScore,
-          players: prevScore.players.map(player => {
-            if (player.id === action.id) {
-              return { ...player, score: changeScore(player.score, action.score) };
-            }
-            return player;
-          })
-        };
+
+    case CHANGE_SCORE:
+      let prevScore = { ...state };
+      return {
+        ...prevScore,
+        players: prevScore.players.map(player => {
+          if (player.id === action.id) {
+            return {
+              ...player,
+              score: changeScore(player.score, action.score)
+            };
+          }
+          return player;
+        })
+      };
+
+    case HOME_RESET:
+      return {
+        text: "Enter a players number!",
+        value: 0,
+        players: [],
+        id: 0,
+        button: "Change name"
+      };
     default:
       return state;
   }

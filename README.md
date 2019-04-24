@@ -2,6 +2,6 @@
 
 ## Status:
 
-...in development (79%)
+...in development (95%)
 
 https://dreamy-brattain-d29fc0.netlify.com/

@@ -6,18 +6,29 @@
   width: 100%;
   .players-counter_map {
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-width: 100px;
     margin: 20px;
-
+    border: 2px solid #2b7ecc;
+    border-radius: 4px;
+    padding: 20px;
     h3 {
       margin: auto auto 0;
+      font-size: 1.5rem;
+      color: #ac2525;
     }
 
     .players-map_score {
       margin-top: 20px;
+      font-size: 2rem;
+      font-family: "Orbitron", sans-serif;
+      color: #1057c2;
+    }
+    &:hover {
+      transform: scale(1.1);
+      border: 2px solid #cc2b61;
     }
   }
 }

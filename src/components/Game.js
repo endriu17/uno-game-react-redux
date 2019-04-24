@@ -57,20 +57,18 @@ class Game extends Component {
   }
   showInput(e, id) {
     let formShow = document.querySelectorAll(".game-log_name");
-    let buttonScore = document.querySelectorAll(".game-won_button");
-    let testButton = e.target.getAttribute("id");
-    let buttonShow = document.querySelector(`#${testButton}`);
-    buttonShow.classList.remove("game-won_button");
+    let getIdName = e.target.getAttribute("id");
+    let playerWin = document.querySelector(`#${getIdName}`);
+    playerWin.style.backgroundColor = "#eefbf9";
 
-    for (var i = 0; i < buttonScore.length; i++) {
-      buttonScore[i].style.display = "none";
+    for (var i = 0; i < this.props.players.length; i++) {
       formShow[i].style.display = "flex";
     }
 
     this.setState({
       buttonWinner: "Winner!",
       winner: this.props.players[id - 1].name,
-      classActive: testButton,
+      classActive: getIdName,
       showButton: formShow.length === 1 ? true : false,
       playersCount: this.state.playersCount + 1
     });
@@ -83,8 +81,6 @@ class Game extends Component {
         let gameWinner = this.props.players[i];
         this.props.gameWinner(gameWinner.name);
         this.props.history.push("/gameover");
-      } else {
-        this.resetRound();
       }
     }
   }
@@ -94,14 +90,10 @@ class Game extends Component {
       this.props.players[parseFloat(this.props.id) - 1].name,
       this.props.players[parseFloat(this.props.id) - 1].score
     );
-    let buttonScore = document.querySelectorAll(".game-won_button");
     let formShow = document.querySelectorAll(".game-log_name");
-    let buttonShow = document.querySelector(`#${this.state.classActive}`);
-    buttonShow.classList.remove("winner");
-    buttonShow.classList.toggle("game-won_button");
-    buttonShow.style.display = "flex";
-    for (var j = 0; j < buttonScore.length; j++) {
-      buttonScore[j].style.display = "flex";
+    let playerWin = document.querySelector(`#${this.state.classActive}`);
+    playerWin.style.backgroundColor = "#fff";
+    for (var j = 0; j < this.props.players.length; j++) {
       formShow[j].style.display = "none";
     }
     this.setState({
@@ -112,59 +104,52 @@ class Game extends Component {
       classActive: "",
       playersCount: 0
     });
+    this.clearAll();
   }
 
   render() {
-    let showHeader = this.state.winner;
     let formShow = document.querySelectorAll(".game-log_name");
     const showButton =
       formShow.length === this.state.playersCount &&
       this.state.playersCount > 0 ? (
-        <button onClick={this.clearAll}>New round</button>
+        <button className="game-newroud_button" onClick={this.resetRound}>
+          Next round
+        </button>
       ) : (
         ""
       );
-    const tableHead = this.props.players.map((player, i) => {
-      return (
-        <p
-          key={i}
-          style={{ display: showHeader === "Winner!" ? "none" : "flex" }}
-        >
-          {player.name}
-        </p>
-      );
-    });
+    const winText = this.state.winner
+      ? `Winner of round ${this.props.roundCount} is ${this.state.winner}!`
+      : "Choose a winner. Click on the player!";
+
+    const winnerLog = () => {
+      if (this.props.id === "") {
+        return "";
+      } else {
+        return (
+          <div className="round-log_winner">
+            <p>{this.state.winner}</p>{" "}
+            <p>{this.props.players[parseFloat(this.props.id) - 1].score}</p>
+          </div>
+        );
+      }
+    };
     return (
       <section className="game-wrapper_main">
-        <Players players={this.props.players} />
-        <h2>{`Runda ${this.props.roundCount}`}</h2>
-        <h2
-          className="round-winner"
-          style={{ display: this.state.winner ? "flex" : "none" }}
-        >
-          Winner of round {this.props.roundCount} is {this.state.winner}!
-        </h2>
+        <div className="round-info">
+          <h2>Round </h2>
+          <span className="round-info_count">{this.props.roundCount}</span>
+        </div>
+        <Players
+          players={this.props.players}
+          button={this.state.buttonWinner}
+          showInput={this.showInput}
+        />
+        <h2 className="round-winner">{winText}</h2>
         <div
           style={{ display: this.state.winner ? "none" : "flex" }}
           className="game-log_header"
-        >
-          {tableHead}
-        </div>
-        <div className="game-log_map">
-        {this.props.players.map((player, i) => {
-          return (
-            <div>
-              <input
-                type="button"
-                className="game-won_button"
-                id={`${"bb" + player.id}`}
-                onClick={(e, id) => this.showInput(e, player.id)}
-                value={this.state.buttonWinner}
-              />
-            </div>
-          );
-        })}
-        </div>
+        />
         {this.props.players.map((player, i) => {
           return (
             <div className="game-wrapper_input" key={i}>
@@ -181,7 +166,7 @@ class Game extends Component {
                   className={`${"is" + player.id} ${"game-round_input"}`}
                   type="text"
                   onChange={this.handleChange}
-                  value={this.state.score}
+                  placeholder={player.score}
                 />
                 <button type="submit" className={"bs" + player.id}>
                   Enter
@@ -192,6 +177,7 @@ class Game extends Component {
         })}
 
         {showButton}
+        {winnerLog()}
         <RoundLog
           log={this.props.log}
           players={this.props.players}
@@ -200,11 +186,13 @@ class Game extends Component {
         <GameLog log={this.props.log} />
         <Link
           className="home-play_button"
-          to="/gameover"
-          style={{ display: this.props.value === 0 ? "none" : "flex" }}
-          reset={this.clearAll}
+          to="/"
+          onClick={() => {
+            this.props.gameReset();
+            this.props.homeReset();
+          }}
         >
-          The end
+          Reset game
         </Link>
       </section>
     );

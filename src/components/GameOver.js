@@ -18,7 +18,7 @@ const GameOver = props => {
           );
         })}
         <h2>
-          Winner is: {props.winner} with score:{' '}
+          Winner is: {props.winner} with score:{" "}
           {Math.max.apply(
             Math,
             props.players.map((player, i) => {
@@ -42,7 +42,14 @@ const GameOver = props => {
           );
         })}
       </div>
-      <Link className="home-play_button" to="/" onClick={props.reset}>
+      <Link
+        className="home-play_button"
+        to="/"
+        onClick={() => {
+          props.gameReset();
+          props.homeReset();
+        }}
+      >
         Play again
       </Link>
     </section>

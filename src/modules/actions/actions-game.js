@@ -3,7 +3,7 @@ export const SAVE_SCORE = "SAVE_SCORE";
 export const GAME_WINNER = "GAME_WINNER";
 export const ROUND_LOG = "ROUND_LOG";
 export const GAME_LOG = "GAME_LOG";
-
+export const GAME_RESET = "GAME_RESET";
 
 export function saveID(id) {
   return {
@@ -39,5 +39,11 @@ export function gameLog(winnerName, winnerScore){
     type: GAME_LOG,
     winnerName,
     winnerScore
+  }
+}
+
+export function gameReset(){
+  return {
+    type: GAME_RESET,
   }
 }

@@ -3,7 +3,8 @@ import {
   SAVE_SCORE,
   GAME_WINNER,
   ROUND_LOG,
-  GAME_LOG
+  GAME_LOG,
+  GAME_RESET
 } from "../actions/actions-game";
 
 const initialState = {
@@ -70,6 +71,16 @@ const gamereducer = function(state = initialState, action) {
         round: [],
         id: "",
         roundCount: newRound.roundCount + 1
+      };
+
+    case GAME_RESET:
+      return {
+        winner: "",
+        id: "",
+        score: 0,
+        roundCount: 1,
+        round: [],
+        log: []
       };
 
     default:

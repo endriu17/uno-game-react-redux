@@ -6,6 +6,7 @@ export const REMOVE_PLAYER = "REMOVE_PLAYER";
 export const CHANGE_NAME = "CHANGE_NAME";
 export const CHANGE_SCORE = "CHANGE_SCORE";
 export const CHANGE_BUTTON_TEXT = "CHANGE_BUTTON_TEXT";
+export const HOME_RESET = 'HOME_RESET'
 
 export function checkTest(text) {
   return {
@@ -66,4 +67,10 @@ export function changeButtonText(text, id) {
     text,
     id
   };
+}
+
+export function homeReset(){
+  return {
+    type: HOME_RESET,
+  }
 }

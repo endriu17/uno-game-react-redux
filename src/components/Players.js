@@ -7,7 +7,12 @@ const Players = props => {
     <section className="game-wrapper_players">
       {props.players.map((player, i) => {
         return (
-          <div className="players-counter_map" key={i}>
+          <div
+            className="players-counter_map"
+            key={i}
+            id={`${"bb" + player.id}`}
+            onClick={(e, id) => props.showInput(e, player.id)}
+          >
             <div className="players-counter_player">
               <h3>{player.name}</h3>
             </div>

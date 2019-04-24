@@ -7,27 +7,11 @@
   padding: 20px;
 
   .players-table_map {
-    // width: 50%;
     display: flex;
+    min-width: 30%;
     justify-content: space-between;
     align-items: center;
     font-size: 1.5rem;
-    margin: 20px 0;
-
-    .game-won_button {
-      padding: 10px;
-      background-color: #2db1ad;
-      color: #fff;
-      border: none;
-    }
-    .winner {
-      padding: 10px;
-      background-color: #dd3012;
-      color: #fff;
-      border: none;
-      font-weight: bold;
-    }
-
     .players-form_name {
       display: flex;
       flex-direction: column;
@@ -43,7 +27,7 @@
       button {
         border: none;
         padding: 10px 20px;
-        background-color: #2283dd;
+        background-color: #005fb8;
         color: #fff;
       }
     }

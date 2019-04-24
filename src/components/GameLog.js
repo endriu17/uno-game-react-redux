@@ -5,21 +5,20 @@ import * as gameactions from "../modules/actions/actions-game";
 const GameLog = props => {
   return (
     <section className="game-log_wrapper">
-      <h4>Game log</h4>
       <div className="log-table_map">
         {props.win.map((game, i) => {
           return (
-            <div key={i}>
+            <table key={i}>
                 {game.map((a, j) => {
                   return (
-                    <div key={j}>
-                      <span>{a.round}</span>
-                      <span>{a.name}</span>
-                      <span>{a.score}</span>
-                    </div>
+                    <tr key={j}>
+                      <td>{a.round}</td>
+                      <td>{a.name}</td>
+                      <td>{a.score}</td>
+                    </tr>
                   );
                 })}
-            </div>
+            </table>
           );
         })}
       </div>

@@ -56,6 +56,7 @@ class Game extends Component {
     }
   }
   showInput(e, id) {
+    console.log(e.target);
     let formShow = document.querySelectorAll(".game-log_name");
     let buttonPlayer = document.querySelectorAll(".players-counter_map");
     buttonPlayer[id - 1].style.backgroundColor = "#bfeaf7";

@@ -13,9 +13,7 @@ const Players = props => {
             id={`${"bb" + player.id}`}
             onClick={(e, id) => props.showInput(e, player.id)}
           >
-            <div className="players-counter_player">
-              <h3>{player.name}</h3>
-            </div>
+            <h3 className="players-counter_player">{player.name}</h3>
             <h3 className="players-map_score">{player.score}</h3>
           </button>
         );

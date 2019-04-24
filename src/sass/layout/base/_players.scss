@@ -15,10 +15,12 @@
     border-radius: 4px;
     padding: 20px;
     background-color: #fff;
+    z-index: 1;
     h3 {
       margin: auto auto 0;
       font-size: 1.5rem;
       color: #ac2525;
+      z-index: -2;
     }
 
     .players-map_score {
@@ -26,6 +28,7 @@
       font-size: 2rem;
       font-family: "Orbitron", sans-serif;
       color: #1057c2;
+      z-index: -2;
     }
     &:hover {
       transform: scale(1.1);

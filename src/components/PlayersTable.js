@@ -46,13 +46,13 @@ class PlayersTable extends Component {
       <section className="players-table_wrapper">
         {this.props.players.map((player, i) => {
           return (
-            <div className="players-table_map" key={i}>
+            <div className="players-table_map fade-in" key={i}>
               <h3>{player.id}.</h3>
               <h3>{player.name}</h3>
               <form
                 className="players-form_name"
                 id={player.id}
-                onSubmit={e => this.changePlayerName(e)}
+                onSubmit={this.changePlayerName}
               >
                 <input
                   style={{ display: "none" }}

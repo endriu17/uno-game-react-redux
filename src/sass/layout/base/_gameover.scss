@@ -1,0 +1,58 @@
+.gameover_wrapper {
+  h1 {
+    text-align: center;
+    color: #1414bb;
+  }
+  .gameover-table_map {
+    .gameover-winner_info {
+      text-align: center;
+      color: #ee2d14;
+    }
+    .gameover-players_log {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      width: 100%;
+      .gameover-counter_map {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-width: 100px;
+        margin: 20px;
+        border: 2px solid #2b7ecc;
+        border-radius: 4px;
+        padding: 20px;
+        background-color: #fff;
+        h3 {
+          margin: auto auto 0;
+          font-size: 1.5rem;
+          color: #ac2525;
+        }
+
+        .gameover-map_score {
+          margin-top: 20px;
+          font-size: 2rem;
+          font-family: "Orbitron", sans-serif;
+          color: #1057c2;
+        }
+      }
+    }
+  }
+  .gameover-play_button {
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #00bb00;
+    color: #fff;
+    border: 2px solid #00bb00;
+    margin-top: 30px;
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    &:hover {
+      background-color: #fff;
+      color: #00bb00;
+    }
+  }
+}

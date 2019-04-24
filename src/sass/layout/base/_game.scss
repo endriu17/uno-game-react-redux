@@ -31,6 +31,10 @@
     }
   }
 
+  .round-winner {
+    color: #633a06;
+  }
+
   .game-newroud_button {
     padding: 10px 20px;
     background-color: #a52a2a;
@@ -38,7 +42,6 @@
     font-size: 1rem;
     font-weight: bold;
     border: 2px solid #a52a2a;
-    margin-bottom: 30px;
     &:hover {
       background-color: #fff;
       color: #a52a2a;
@@ -84,9 +87,25 @@
     align-items: center;
     min-width: 15%;
     font-weight: bold;
-
+    margin-top: 40px;
     p {
       margin: 0 0 5px;
     }
   }
+  .home-play_button {
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #ff0000;
+    color: #fff;
+    border: 2px solid #ff0000;
+    margin-top: 30px;
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    &:hover {
+      background-color: #fff;
+      color: #ff0000;
+    }
+  }
 }
+

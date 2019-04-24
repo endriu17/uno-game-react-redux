@@ -4,11 +4,12 @@ import * as gameactions from "../modules/actions/actions-game";
 
 const GameLog = props => {
   return (
-    <section className="game-log_wrapper">
-      <div className="log-table_map">
+    <section className="game-log_wrapper fade-in">
+      <div className="log-table_map fade-in">
         {props.win.map((game, i) => {
           return (
             <table key={i}>
+              <tbody>
                 {game.map((a, j) => {
                   return (
                     <tr key={j}>
@@ -18,6 +19,7 @@ const GameLog = props => {
                     </tr>
                   );
                 })}
+              </tbody>
             </table>
           );
         })}

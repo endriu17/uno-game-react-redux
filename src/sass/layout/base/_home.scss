@@ -3,15 +3,28 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  position: relative;
+  // background-color: #9dcbf3a6;
+  .home-header {
+    position: absolute;
+    top: 20px;
+    color: #1a1af6;
+    // background-color: #faebd79f;
+    padding: 20px;
+  }
 
   .home-info_text {
     display: flex;
     font-size: 1.6rem;
-    width: 100%;
+    width: 40%;
     justify-content: center;
     align-items: center;
     padding: 20px;
-    h3,p {
+    // background-color: #faebd79f;
+    margin-bottom: 50px;
+    h3,
+    p {
       margin: 0;
       padding: 0;
     }
@@ -33,7 +46,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 25%;
+    width: 30%;
     form.home-players_number {
       width: 100%;
       display: flex;
@@ -46,6 +59,9 @@
         text-align: center;
         font-size: 1.5rem;
         font-weight: bold;
+        border: 2px solid #000;
+        border-radius: 3px;
+        background-color: #fff;
       }
     }
     button.button-submit {

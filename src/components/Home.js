@@ -34,7 +34,7 @@ class Home extends Component {
 
   handleChange(e) {
     console.log(e.target.value);
-    this.checkThis("enter a players number...");
+    this.checkThis("proccesing...");
     this.setState({
       value: e.target.value
     });
@@ -46,10 +46,10 @@ class Home extends Component {
 
   render() {
     return (
-      <section className="home-wrapper">
-        <h1>Uno Game Counter</h1>
+      <section className="home-wrapper fade-in">
+        <h1 className="home-header">Uno Game Counter</h1>
         <div className="home-info_text">
-          <h3 className="home-info_header">{this.props.text}</h3>
+          <h3 className="home-info_header fade-in">{this.props.text}</h3>
           <p
             className="home-players_value"
             style={{ display: this.props.value === 0 ? "none" : "flex" }}
@@ -59,7 +59,7 @@ class Home extends Component {
         </div>
 
         <div
-          className="home-value_form"
+          className="home-value_form fade-in"
           style={{ display: this.props.value > 0 ? "none" : "flex" }}
         >
           <form
@@ -80,7 +80,7 @@ class Home extends Component {
           style={{ display: this.props.value === 0 ? "none" : "flex" }}
         />
         <Link
-          className="home-play_button"
+          className="home-play_button fade-in"
           to="/game"
           style={{ display: this.props.value === 0 ? "none" : "flex" }}
         >

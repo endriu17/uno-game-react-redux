@@ -57,18 +57,20 @@ class Game extends Component {
   }
   showInput(e, id) {
     let formShow = document.querySelectorAll(".game-log_name");
-    let getIdName = e.target.getAttribute("id");
-    let playerWin = document.querySelector(`#${getIdName}`);
-    playerWin.style.backgroundColor = "#eefbf9";
+    let buttonPlayer = document.querySelectorAll(".players-counter_map");
+    buttonPlayer[id - 1].style.backgroundColor = "#bfeaf7";
+    let playerStopClick = document.querySelectorAll(".players-counter_map");
+    for (var i = 0; i < playerStopClick.length; i++) {
+      playerStopClick[i].disabled = true;
+    }
 
-    for (var i = 0; i < this.props.players.length; i++) {
-      formShow[i].style.display = "flex";
+    for (var j = 0; j < this.props.players.length; j++) {
+      formShow[j].style.display = "flex";
     }
 
     this.setState({
       buttonWinner: "Winner!",
       winner: this.props.players[id - 1].name,
-      classActive: getIdName,
       showButton: formShow.length === 1 ? true : false,
       playersCount: this.state.playersCount + 1
     });
@@ -91,8 +93,13 @@ class Game extends Component {
       this.props.players[parseFloat(this.props.id) - 1].score
     );
     let formShow = document.querySelectorAll(".game-log_name");
-    let playerWin = document.querySelector(`#${this.state.classActive}`);
-    playerWin.style.backgroundColor = "#fff";
+    let playerStopClick = document.querySelectorAll(".players-counter_map");
+    for (var i = 0; i < playerStopClick.length; i++) {
+      playerStopClick[i].style.backgroundColor = "#fff";
+    }
+    for (var k = 0; k < playerStopClick.length; k++) {
+      playerStopClick[k].disabled = false;
+    }
     for (var j = 0; j < this.props.players.length; j++) {
       formShow[j].style.display = "none";
     }
@@ -135,7 +142,7 @@ class Game extends Component {
       }
     };
     return (
-      <section className="game-wrapper_main">
+      <section className="game-wrapper_main fade-in">
         <div className="round-info">
           <h2>Round </h2>
           <span className="round-info_count">{this.props.roundCount}</span>
@@ -145,17 +152,17 @@ class Game extends Component {
           button={this.state.buttonWinner}
           showInput={this.showInput}
         />
-        <h2 className="round-winner">{winText}</h2>
+        <h2 className="round-winner fade-in">{winText}</h2>
         <div
           style={{ display: this.state.winner ? "none" : "flex" }}
           className="game-log_header"
         />
         {this.props.players.map((player, i) => {
           return (
-            <div className="game-wrapper_input" key={i}>
+            <div className="game-wrapper_input fade-in" key={i}>
               <form
                 style={{ display: "none" }}
-                className="game-log_name"
+                className="game-log_name fade-in"
                 id={player.id}
                 onSubmit={e => this.handleSubmit(e)}
               >
@@ -183,7 +190,7 @@ class Game extends Component {
           players={this.props.players}
           winID={this.props.id}
         />
-        <GameLog log={this.props.log} />
+        <GameLog log={this.props.log} players={this.props.players} input={this.showInput}/>
         <Link
           className="home-play_button"
           to="/"

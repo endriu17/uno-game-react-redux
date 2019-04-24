@@ -1,13 +1,17 @@
 html {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-	overflow-x: hidden;
+  overflow-x: hidden;
+  // background-image: url("/images/uno.jpg");
+  // background-size: cover;
+  // background-color: #9dcbf3a6;
+  // background-repeat: no-repeat;
 }
 
 * {
-    position: relative;
-    -webkit-transition: all .5s ease;
-    transition: all .5s ease;
+  position: relative;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }

@@ -128,7 +128,7 @@ class Game extends Component {
       );
     const winText = this.state.winner
       ? `Winner of round ${this.props.roundCount} is ${this.state.winner}!`
-      : "Choose a winner. Click on the player!";
+      : 'Play and then indicate who won by click on the player';
 
     const winnerLog = () => {
       if (this.props.id === "") {

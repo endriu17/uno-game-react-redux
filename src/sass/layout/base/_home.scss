@@ -81,4 +81,15 @@
     color: #fff;
     font-size: 1.3rem;
   }
+
+  .rules-link {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+
+    img {
+      width: 100px;
+      height: 100px;
+    }
+  }
 }

@@ -1,4 +1,4 @@
-## React-Redux-Boilerplate
+## Uno (card game) Counter
 
 ## Status:
 
